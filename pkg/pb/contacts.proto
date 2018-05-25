@@ -27,7 +27,7 @@ message Email {
       {type: "bool", name: "is_primary"}, {type: "uint64", name: "Contact_id"}]
     };
     uint64 id = 1;
-    string address = 2 [(validate.rules).string.email = true];
+    string address = 2 [(gorm.field).tags = "gorm:\"UNIQUE\"", (validate.rules).string.email = true];
 }
 
 message CreateContactRequest {
@@ -58,6 +58,10 @@ message DeleteContactRequest {
     uint64 id = 1;
 }
 
+message ListContactsRequest {
+
+}
+
 message ListContactsResponse {
     repeated Contact results = 1;
 }
@@ -65,6 +69,13 @@ message ListContactsResponse {
 message SMSRequest {
     uint64 id = 1;
     string message = 2;
+}
+
+message ErrorContactRequest {
+    uint64 id = 1;
+}
+
+message ErrorContactResponse {
 }
 
 service Contacts {
@@ -96,7 +107,7 @@ service Contacts {
         option (gorm.method).object_type = "Contact";
     }
 
-    rpc List (google.protobuf.Empty) returns (ListContactsResponse) {
+    rpc List (ListContactsRequest) returns (ListContactsResponse) {
         option (google.api.http) = {
             get: "/contacts"
         };
@@ -106,6 +117,12 @@ service Contacts {
         option (google.api.http) = {
             post: "/contacts/{id}/sms"
             body: "*"
+        };
+    }
+
+    rpc ErrorExample (ErrorContactRequest) returns (ErrorContactResponse) {
+        option (google.api.http) = {
+            get: "/contacts/{id}/error"
         };
     }
 }

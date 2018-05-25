@@ -617,6 +617,48 @@ func (e DeleteContactRequestValidationError) Error() string {
 
 var _ error = DeleteContactRequestValidationError{}
 
+// Validate checks the field values on ListContactsRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ListContactsRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// ListContactsRequestValidationError is the validation error returned by
+// ListContactsRequest.Validate if the designated constraints aren't met.
+type ListContactsRequestValidationError struct {
+	Field  string
+	Reason string
+	Cause  error
+	Key    bool
+}
+
+// Error satisfies the builtin error interface
+func (e ListContactsRequestValidationError) Error() string {
+	cause := ""
+	if e.Cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.Cause)
+	}
+
+	key := ""
+	if e.Key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sListContactsRequest.%s: %s%s",
+		key,
+		e.Field,
+		e.Reason,
+		cause)
+}
+
+var _ error = ListContactsRequestValidationError{}
+
 // Validate checks the field values on ListContactsResponse with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, an error is returned.
@@ -720,3 +762,89 @@ func (e SMSRequestValidationError) Error() string {
 }
 
 var _ error = SMSRequestValidationError{}
+
+// Validate checks the field values on ErrorContactRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ErrorContactRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	return nil
+}
+
+// ErrorContactRequestValidationError is the validation error returned by
+// ErrorContactRequest.Validate if the designated constraints aren't met.
+type ErrorContactRequestValidationError struct {
+	Field  string
+	Reason string
+	Cause  error
+	Key    bool
+}
+
+// Error satisfies the builtin error interface
+func (e ErrorContactRequestValidationError) Error() string {
+	cause := ""
+	if e.Cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.Cause)
+	}
+
+	key := ""
+	if e.Key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sErrorContactRequest.%s: %s%s",
+		key,
+		e.Field,
+		e.Reason,
+		cause)
+}
+
+var _ error = ErrorContactRequestValidationError{}
+
+// Validate checks the field values on ErrorContactResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, an error is returned.
+func (m *ErrorContactResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	return nil
+}
+
+// ErrorContactResponseValidationError is the validation error returned by
+// ErrorContactResponse.Validate if the designated constraints aren't met.
+type ErrorContactResponseValidationError struct {
+	Field  string
+	Reason string
+	Cause  error
+	Key    bool
+}
+
+// Error satisfies the builtin error interface
+func (e ErrorContactResponseValidationError) Error() string {
+	cause := ""
+	if e.Cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.Cause)
+	}
+
+	key := ""
+	if e.Key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sErrorContactResponse.%s: %s%s",
+		key,
+		e.Field,
+		e.Reason,
+		cause)
+}
+
+var _ error = ErrorContactResponseValidationError{}

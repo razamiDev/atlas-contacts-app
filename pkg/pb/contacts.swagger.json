@@ -108,6 +108,31 @@
         ]
       }
     },
+    "/contacts/{id}/error": {
+      "get": {
+        "operationId": "ErrorExample",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/contactsErrorContactResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Contacts"
+        ]
+      }
+    },
     "/contacts/{id}/sms": {
       "post": {
         "operationId": "SendSMS",
@@ -222,6 +247,9 @@
           "type": "string"
         }
       }
+    },
+    "contactsErrorContactResponse": {
+      "type": "object"
     },
     "contactsListContactsResponse": {
       "type": "object",
